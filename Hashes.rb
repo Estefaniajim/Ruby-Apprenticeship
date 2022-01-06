@@ -2,11 +2,9 @@ positions = {first_base: "Christ", second_base: "Mang g", third: "random"}
 
 #grabbing a value
 first = positions[:first_base]
-p first
 
 #delete
 positions.delete(:third)
-p positions
 
 #iterate over the keys
 positions.each_key do |key|
@@ -20,24 +18,36 @@ end
 
 #add a key
 positions[:forth] = "coco"
-p positions
 
 #invert the values for the keys
 inverted = positions.invert
-p inverted
 
 #merge two hashes
 merged = inverted.merge(positions)
-p merged
 
 #make it a matrix
 matrix = positions.to_a
-p matrix
 
 #keys as an array
 keys = positions.keys
-p keys
 
 #values as an array
 values = positions.values
-p values
+
+#using ruby's big method to parse hash
+user = {
+  name: "Kristine",
+  favorites: {
+    food: "pizza",
+    videogame: "animal crossing"
+  }
+}
+p user.dig(:name) # => "Kristine"
+p user.dig(:favorites, :videogame) # => animal crossing
+# user.dig(:favorites, :something_else)  => nil
+
+# Yaml data
+require "yaml"
+config = YAML.load_file("config.yml")
+p config.dig("secret_key") # => "password"
+p config.dig("production", "aws_key") # => "123"
